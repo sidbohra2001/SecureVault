@@ -7,8 +7,11 @@ It uses Firebase as backend to store the data.
 
 ### Features Implemented
 - Create Account
+- Animate the transitions
 - Implement Password Encryption
+- Login Functionality
 
 ### Features to be Implemented
-- Login
-- Animate the transitions
+- Login to return user data
+- Implement sound alert and haptic feedback on prompt alert or button press 
+- Improve the UI
