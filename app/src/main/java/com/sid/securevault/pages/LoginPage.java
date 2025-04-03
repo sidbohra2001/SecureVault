@@ -5,6 +5,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,12 +15,16 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.database.FirebaseDatabase;
 import com.sid.securevault.R;
-import com.sid.securevault.repository.ConnectToDatabase;
+import com.sid.securevault.model.AccountModel;
+import com.sid.securevault.service.AccountServicesImpl;
+import com.sid.securevault.utils.Constants;
+
+import java.util.concurrent.CompletableFuture;
 
 public class LoginPage extends AppCompatActivity {
 
     private CreateAccountPage createAccountPage;
-    private EditText name, password;
+    private EditText mobileNumber, password;
     private TextView createButton;
     private Button loginButton;
     private FirebaseDatabase database;
@@ -36,7 +41,7 @@ public class LoginPage extends AppCompatActivity {
         });
 
         // Initialize the views
-        name = findViewById(R.id.id_name);
+        mobileNumber = findViewById(R.id.id_mobile_number);
         password = findViewById(R.id.id_password);
         loginButton = findViewById(R.id.id_login);
         createButton = findViewById(R.id.id_create);
@@ -48,8 +53,13 @@ public class LoginPage extends AppCompatActivity {
 
         // Set an OnClickListener for the loginButton
         loginButton.setOnClickListener(_ -> {
-            boolean result = ConnectToDatabase.login(name.getText().toString(), password.getText().toString());
-            Log.i("MY_TAG", "onCreate: result: "+result);
+            AccountModel accountModel = AccountModel.builder()
+                    .mobileNumber(mobileNumber.getText().toString())
+                    .password(password.getText().toString())
+                    .build();
+            new AccountServicesImpl().login(accountModel, LoginPage.this).whenComplete((result, throwable) -> {
+                Toast.makeText(LoginPage.this, "LOGIN "+ (result ? "SUCCESS" : "FAILURE") + " | Mobile: "+accountModel.getMobileNumber(), Toast.LENGTH_SHORT).show();
+            });
         });
     }
 }

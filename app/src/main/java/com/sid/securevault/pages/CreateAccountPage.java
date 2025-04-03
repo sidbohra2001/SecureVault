@@ -12,15 +12,13 @@ import android.widget.EditText;
 import androidx.appcompat.app.AlertDialog;
 
 import com.sid.securevault.R;
-import com.sid.securevault.model.CreateAccountModel;
+import com.sid.securevault.model.AccountModel;
 import com.sid.securevault.service.AccountServices;
 import com.sid.securevault.service.AccountServicesImpl;
 
 import java.time.LocalDate;
 
 public class CreateAccountPage {
-
-    private AccountServices accountServices;
 
     public void createAccount(Context context) {
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -38,7 +36,7 @@ public class CreateAccountPage {
         EditText confirmPassword = createAccountView.findViewById(R.id.id_ca_confirmPassword);
 
         createButton.setOnClickListener(_ -> {
-            CreateAccountModel createAccountModel = CreateAccountModel.builder()
+            AccountModel accountModel = AccountModel.builder()
                     .fullName(fullName.getText().toString())
                     .mobileNumber(mobileNumber.getText().toString())
                     .emailId(email.getText().toString())
@@ -47,7 +45,7 @@ public class CreateAccountPage {
                     .confirmPassword(confirmPassword.getText().toString())
                     .build();
 
-            new AccountServicesImpl().createAccount(createAccountModel, context)
+            new AccountServicesImpl().createAccount(accountModel, context)
                 .whenComplete((response, _) -> {
                         if(response)
                             dialog.dismiss();

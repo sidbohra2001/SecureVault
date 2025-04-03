@@ -14,7 +14,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 @ToString
-public class CreateAccountModel implements Serializable {
+public class AccountModel implements Serializable {
     private String fullName;
     private String mobileNumber;
     private String emailId;

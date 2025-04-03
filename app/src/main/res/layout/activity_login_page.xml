@@ -8,13 +8,13 @@
     tools:context=".pages.LoginPage">
 
     <EditText
-        android:id="@+id/id_name"
+        android:id="@+id/id_mobile_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="User Name"
+        android:hint="Mobile Number"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_name" />
+        app:layout_constraintTop_toBottomOf="@+id/id_mobile_number" />
 
     <Button
         android:id="@+id/id_login"

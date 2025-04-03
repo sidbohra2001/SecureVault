@@ -2,6 +2,10 @@ package com.sid.securevault.utils;
 
 public class Constants {
 
+    // Values
+    public static final String CREATE_ACCOUNT = "CREATE_ACCOUNT";
+    public static final String LOGIN = "LOGIN";
+
     // Node References
     public static final String LOGIN_SAFE_STORE = "LOGIN_SAFE_STORE";
     public static final String USER_INFO = "USER_INFO";
