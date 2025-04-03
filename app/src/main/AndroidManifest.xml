@@ -13,7 +13,7 @@
         android:theme="@style/Theme.SecureVault"
         tools:targetApi="31">
         <activity
-            android:name=".LoginPage"
+            android:name=".pages.LoginPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

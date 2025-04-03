@@ -1,6 +1,5 @@
-package com.sid.securevault;
+package com.sid.securevault.pages;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -14,11 +13,12 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.database.FirebaseDatabase;
+import com.sid.securevault.R;
 import com.sid.securevault.repository.ConnectToDatabase;
-import com.sid.securevault.utils.Constants;
 
 public class LoginPage extends AppCompatActivity {
 
+    private CreateAccountPage createAccountPage;
     private EditText name, password;
     private TextView createButton;
     private Button loginButton;
@@ -43,15 +43,11 @@ public class LoginPage extends AppCompatActivity {
 
         // Set an OnClickListener for the createButton
         createButton.setOnClickListener(_ -> {
-//            Intent intent = new Intent(LoginPage.this, CreateAccountPage.class);
-//            startActivity(intent);
-            CreateAccountPage.createAccount(LoginPage.this);
+            new CreateAccountPage().createAccount(LoginPage.this);
         });
 
         // Set an OnClickListener for the loginButton
         loginButton.setOnClickListener(_ -> {
-//            database = FirebaseDatabase.getInstance();
-//            database.getReference(Constants.LOGIN_SAFE_STORE).child(name.getText().toString()).setValue(password.getText().toString());
             boolean result = ConnectToDatabase.login(name.getText().toString(), password.getText().toString());
             Log.i("MY_TAG", "onCreate: result: "+result);
         });

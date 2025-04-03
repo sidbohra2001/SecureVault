@@ -1,4 +1,4 @@
-package com.sid.securevault.component;
+package com.sid.securevault.components;
 
 import android.content.Context;
 import android.view.LayoutInflater;

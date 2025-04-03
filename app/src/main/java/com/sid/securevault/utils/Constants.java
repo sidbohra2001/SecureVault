@@ -12,4 +12,8 @@ public class Constants {
     // Tags
     public static final String MY_INFO_TAG = "MY_INFO_TAG";
     public static final String MY_ERROR_TAG = "MY_ERROR_TAG";
+
+    // Extra
+    public static final int COST_FACTOR = 12;
+    public static final String DOLLAR = "$";
 }

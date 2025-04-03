@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sid.securevault.model.CreateAccountModel;
+import com.sid.securevault.utils.PasswordManager;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -53,7 +54,7 @@ public class ConnectToDatabase {
                 userInfoRef.child(mobileNumber).setValue(map)
                     .addOnSuccessListener(_ -> {
                         Log.i(MY_INFO_TAG, "USER_INFO | Account Creation: SUCCESS | Mobile: " + mobileNumber);
-                        loginSafeStoreRef.child(mobileNumber).setValue(createAccountModel.getPassword())
+                        loginSafeStoreRef.child(mobileNumber).setValue(PasswordManager.encrypt(createAccountModel.getPassword()))
                             .addOnSuccessListener(_ -> {
                                 Log.i(MY_INFO_TAG, "LOGIN_SAFE_STORE | Account Creation: SUCCESS | Mobile: " + mobileNumber);
                                 Toast.makeText(context, "Account creation | SUCCESS | Mobile: " + createAccountModel.getMobileNumber(), Toast.LENGTH_SHORT).show();
