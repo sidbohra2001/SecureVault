@@ -41,7 +41,7 @@ public class ConnectToDatabaseImpl implements ConnectToDatabase{
         DatabaseReference userInfoRef = database.getReference(USER_INFO);
         Map<String, Object> map = new HashMap<>();
         for(Field field : accountModel.getClass().getDeclaredFields()) {
-            if(field.getName().equals("confirmPassword")) continue;
+            if(field.getName().toLowerCase().contains("password")) continue;
             field.setAccessible(true);
             map.put(field.getName(), field.get(accountModel));
         }

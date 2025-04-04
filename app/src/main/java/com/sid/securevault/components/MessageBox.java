@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 
 import com.sid.securevault.R;
+import com.sid.securevault.utils.DeviceFeedback;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -49,7 +50,11 @@ public class MessageBox {
         message.setText(model.getMessage());
 
         dialog.getWindow().getAttributes().windowAnimations = R.style.MessageBox_Popup_Style;
-        button.setOnClickListener(_ -> dialog.dismiss());
+        button.setOnClickListener(_ -> {
+            DeviceFeedback.clickSound(context);
+            DeviceFeedback.hapticFeedBack(context);
+            dialog.dismiss();
+        });
         dialog.show();
 
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();

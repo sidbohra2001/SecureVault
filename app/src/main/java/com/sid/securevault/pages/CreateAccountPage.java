@@ -13,8 +13,8 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.sid.securevault.R;
 import com.sid.securevault.model.AccountModel;
-import com.sid.securevault.service.AccountServices;
 import com.sid.securevault.service.AccountServicesImpl;
+import com.sid.securevault.utils.DeviceFeedback;
 
 import java.time.LocalDate;
 
@@ -36,6 +36,8 @@ public class CreateAccountPage {
         EditText confirmPassword = createAccountView.findViewById(R.id.id_ca_confirmPassword);
 
         createButton.setOnClickListener(_ -> {
+            DeviceFeedback.clickSound(context);
+            DeviceFeedback.hapticFeedBack(context);
             AccountModel accountModel = AccountModel.builder()
                     .fullName(fullName.getText().toString())
                     .mobileNumber(mobileNumber.getText().toString())

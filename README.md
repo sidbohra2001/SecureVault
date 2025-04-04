@@ -10,8 +10,8 @@ It uses Firebase as backend to store the data.
 - Animate the transitions
 - Implement Password Encryption
 - Login Functionality
+- Implement sound alert and haptic feedback on prompt alert or button press
 
 ### Features to be Implemented
 - Login to return user data
-- Implement sound alert and haptic feedback on prompt alert or button press 
 - Improve the UI

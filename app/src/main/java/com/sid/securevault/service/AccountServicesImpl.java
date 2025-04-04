@@ -5,7 +5,6 @@ import android.util.Log;
 
 import com.sid.securevault.components.MessageBox;
 import com.sid.securevault.model.AccountModel;
-import com.sid.securevault.repository.ConnectToDatabase;
 import com.sid.securevault.repository.ConnectToDatabaseImpl;
 import com.sid.securevault.utils.Constants;
 

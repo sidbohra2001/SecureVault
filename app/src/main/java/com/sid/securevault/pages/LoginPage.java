@@ -1,7 +1,7 @@
 package com.sid.securevault.pages;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,9 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.sid.securevault.R;
 import com.sid.securevault.model.AccountModel;
 import com.sid.securevault.service.AccountServicesImpl;
-import com.sid.securevault.utils.Constants;
-
-import java.util.concurrent.CompletableFuture;
+import com.sid.securevault.utils.DeviceFeedback;
 
 public class LoginPage extends AppCompatActivity {
 
@@ -28,6 +26,7 @@ public class LoginPage extends AppCompatActivity {
     private TextView createButton;
     private Button loginButton;
     private FirebaseDatabase database;
+    private MediaPlayer media;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +47,15 @@ public class LoginPage extends AppCompatActivity {
 
         // Set an OnClickListener for the createButton
         createButton.setOnClickListener(_ -> {
+            DeviceFeedback.clickSound(LoginPage.this);
+            DeviceFeedback.hapticFeedBack(LoginPage.this);
             new CreateAccountPage().createAccount(LoginPage.this);
         });
 
         // Set an OnClickListener for the loginButton
         loginButton.setOnClickListener(_ -> {
+            DeviceFeedback.clickSound(LoginPage.this);
+            DeviceFeedback.hapticFeedBack(LoginPage.this);
             AccountModel accountModel = AccountModel.builder()
                     .mobileNumber(mobileNumber.getText().toString())
                     .password(password.getText().toString())
@@ -61,5 +64,11 @@ public class LoginPage extends AppCompatActivity {
                 Toast.makeText(LoginPage.this, "LOGIN "+ (result ? "SUCCESS" : "FAILURE") + " | Mobile: "+accountModel.getMobileNumber(), Toast.LENGTH_SHORT).show();
             });
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        DeviceFeedback.releaseSound();
     }
 }
