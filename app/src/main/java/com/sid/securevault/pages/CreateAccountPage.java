@@ -11,6 +11,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AlertDialog;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.sid.securevault.R;
 import com.sid.securevault.model.AccountModel;
 import com.sid.securevault.service.AccountServicesImpl;
@@ -29,11 +30,11 @@ public class CreateAccountPage {
         AlertDialog dialog = builder.create();
 
         Button createButton = createAccountView.findViewById(R.id.id_ca_createButton);
-        EditText fullName = createAccountView.findViewById(R.id.id_ca_fullName);
-        EditText mobileNumber = createAccountView.findViewById(R.id.id_ca_mobileNumber);
-        EditText email = createAccountView.findViewById(R.id.id_ca_email);
-        EditText password = createAccountView.findViewById(R.id.id_ca_password);
-        EditText confirmPassword = createAccountView.findViewById(R.id.id_ca_confirmPassword);
+        TextInputEditText fullName = createAccountView.findViewById(R.id.id_ca_fullName);
+        TextInputEditText mobileNumber = createAccountView.findViewById(R.id.id_ca_mobileNumber);
+        TextInputEditText email = createAccountView.findViewById(R.id.id_ca_email);
+        TextInputEditText password = createAccountView.findViewById(R.id.id_ca_password);
+        TextInputEditText confirmPassword = createAccountView.findViewById(R.id.id_ca_confirmPassword);
 
         createButton.setOnClickListener(_ -> {
             DeviceFeedback.clickSound(context);
