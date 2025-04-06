@@ -15,6 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.database.FirebaseDatabase;
 import com.sid.securevault.R;
+import com.sid.securevault.components.MessageBox;
 import com.sid.securevault.model.AccountModel;
 import com.sid.securevault.service.AccountServicesImpl;
 import com.sid.securevault.utils.DeviceFeedback;
@@ -49,6 +50,10 @@ public class LoginPage extends AppCompatActivity {
         createButton.setOnClickListener(_ -> {
             DeviceFeedback.clickSound(LoginPage.this);
             DeviceFeedback.hapticFeedBack(LoginPage.this);
+            mobileNumber.setText(null);
+            mobileNumber.clearFocus();
+            password.setText(null);
+            password.clearFocus();
             new CreateAccountPage().createAccount(LoginPage.this);
         });
 
@@ -61,7 +66,20 @@ public class LoginPage extends AppCompatActivity {
                     .password(password.getText().toString())
                     .build();
             new AccountServicesImpl().login(accountModel, LoginPage.this).whenComplete((result, throwable) -> {
-                Toast.makeText(LoginPage.this, "LOGIN "+ (result ? "SUCCESS" : "FAILURE") + " | Mobile: "+accountModel.getMobileNumber(), Toast.LENGTH_SHORT).show();
+                if (result == null)
+                    Toast.makeText(LoginPage.this, "LOGIN FAILURE" + " | Mobile: "+accountModel.getMobileNumber(), Toast.LENGTH_SHORT).show();
+                else
+                    MessageBox.showMessageBox(MessageBox.builder()
+                            .title("LOGIN SUCCESS")
+                            .salute("Hi "+result.getFullName()+",")
+                            .description("Response Details")
+                            .message("""
+                                    Full Name:\s"""+result.getFullName()+"""
+                                    \nMobile Number:\s"""+result.getMobileNumber()+"""
+                                    \nEmail Id:\s"""+result.getEmailId()+"""
+                                    \nDate of Birth:\s"""+result.getDateOfBirth()+"""
+                                    """)
+                            .build(), LoginPage.this);
             });
         });
     }

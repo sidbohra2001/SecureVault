@@ -9,5 +9,5 @@ import java.util.concurrent.ExecutionException;
 
 public interface ConnectToDatabase {
     CompletableFuture<Boolean> createAccount(AccountModel accountModel, Context context) throws IllegalAccessException, ExecutionException, InterruptedException;
-    CompletableFuture<Boolean> login(AccountModel accountModel, Context context) throws IllegalAccessException, ExecutionException, InterruptedException;
+    CompletableFuture<AccountModel> login(AccountModel accountModel, Context context) throws IllegalAccessException, ExecutionException, InterruptedException;
 }

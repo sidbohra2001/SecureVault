@@ -13,9 +13,10 @@ It uses Firebase as backend to store the data.
 - Implement sound alert and haptic feedback on prompt alert or button press
 - Improve the UI
 - Change the apps logo
+- Login to return user data
 
 ### Features to be Implemented
-- Login to return user data
+- Implement Biometric Login
 - Implement proper color combination
 - Implement forgot password functionality
 - Implement User Data Storage

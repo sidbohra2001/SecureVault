@@ -82,25 +82,35 @@ public class ConnectToDatabaseImpl implements ConnectToDatabase{
     }
 
     @Override
-    public CompletableFuture<Boolean> login(AccountModel accountModel, Context context) throws IllegalAccessException, ExecutionException, InterruptedException {
-        CompletableFuture<Boolean> result = new CompletableFuture<>();
+    public CompletableFuture<AccountModel> login(AccountModel accountModel, Context context) throws IllegalAccessException, ExecutionException, InterruptedException {
+        CompletableFuture<AccountModel> result = new CompletableFuture<>();
         database = FirebaseDatabase.getInstance();
         DatabaseReference loginSafeStoreRef = database.getReference(LOGIN_SAFE_STORE);
+        DatabaseReference userInfoRef = database.getReference(USER_INFO);
         loginSafeStoreRef.child(accountModel.getMobileNumber()).addListenerForSingleValueEvent(new ValueEventListener() {
-
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists() && snapshot.getValue() != null){
                     if(PasswordManager.verifyPassword(snapshot.getValue().toString(), accountModel.getPassword())){
-                        result.complete(true);
-                    }
-                    else result.complete(false);
-                } else result.complete(false);
+                        userInfoRef.child(accountModel.getMobileNumber())
+                            .addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    result.complete(snapshot.getValue(AccountModel.class));
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                    result.complete(null);
+                                }
+                            });
+                    } else result.complete(null);
+                } else result.complete(null);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                result.complete(false);
+                result.complete(null);
             }
         });
         return result;
@@ -122,10 +132,5 @@ public class ConnectToDatabaseImpl implements ConnectToDatabase{
             }
         });
         return source.getTask();
-    }
-
-    public static boolean login(String mobileNumber, String password) {
-        database = FirebaseDatabase.getInstance();
-        return true;
     }
 }

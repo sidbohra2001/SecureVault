@@ -33,6 +33,7 @@ public class CreateAccountPage {
         TextInputEditText fullName = createAccountView.findViewById(R.id.id_ca_fullName);
         TextInputEditText mobileNumber = createAccountView.findViewById(R.id.id_ca_mobileNumber);
         TextInputEditText email = createAccountView.findViewById(R.id.id_ca_email);
+        TextInputEditText dateOfBirth = createAccountView.findViewById(R.id.id_ca_dob);
         TextInputEditText password = createAccountView.findViewById(R.id.id_ca_password);
         TextInputEditText confirmPassword = createAccountView.findViewById(R.id.id_ca_confirmPassword);
 
@@ -43,7 +44,7 @@ public class CreateAccountPage {
                     .fullName(fullName.getText().toString())
                     .mobileNumber(mobileNumber.getText().toString())
                     .emailId(email.getText().toString())
-                    .dateOfBirth(LocalDate.now())
+                    .dateOfBirth(dateOfBirth.getText().toString())
                     .password(password.getText().toString())
                     .confirmPassword(confirmPassword.getText().toString())
                     .build();

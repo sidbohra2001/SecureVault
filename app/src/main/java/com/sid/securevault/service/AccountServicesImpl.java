@@ -34,22 +34,23 @@ public class AccountServicesImpl implements AccountServices {
     }
 
     @Override
-    public CompletableFuture<Boolean> login(AccountModel accountModel, Context context) {
+    public CompletableFuture<AccountModel> login(AccountModel accountModel, Context context) {
 
-        CompletableFuture<Boolean> result = new CompletableFuture<>();
+        CompletableFuture<AccountModel> result = new CompletableFuture<>();
         try {
             if(
                 !checkIfMandatoryAvailable(accountModel, context, Constants.LOGIN) ||
                 !checkIfValidPassword(accountModel, context, Constants.LOGIN)
-            ) result.complete(false);
+            ) throw new IllegalArgumentException("Invalid Credentials");
             else {
                 new ConnectToDatabaseImpl().login(accountModel, context)
                         .whenComplete((response, _) -> {
                             result.complete(response);
                         });
             }
-        } catch (IllegalAccessException | InterruptedException | ExecutionException e) {
+        } catch (IllegalAccessException | InterruptedException | ExecutionException | IllegalArgumentException e) {
             Log.e(Constants.MY_ERROR_TAG, "ERROR | While logging in | Error Message: " + e.getMessage(), e);
+            result.complete(null);
         }
         return result;
     }
@@ -62,6 +63,7 @@ public class AccountServicesImpl implements AccountServices {
                         model != null &&
                         !model.getFullName().trim().isEmpty() &&
                         !model.getMobileNumber().trim().isEmpty() &&
+                        model.getMobileNumber().length() == 10 &&
                         !model.getPassword().trim().isEmpty() &&
                         !model.getConfirmPassword().trim().isEmpty()
                 ) {
@@ -75,18 +77,19 @@ public class AccountServicesImpl implements AccountServices {
                         .message("""
                                 Note:
                                 The following fields are mandatory to create an account:
-                                1. Mobile Number
-                                2. Password
-                                3. Email Id
-                                4. Date of Birth
-                                5. Full Name
+                                1. Full Name
+                                2. Mobile Number (10 Digits)
+                                3. Password
+                                4. Email Id
+                                5. Date of Birth
                                 Please fill the above fields to create an account.""")
                         .build(), context);
                 break;
             case Constants.LOGIN:
                 if(
                         !model.getPassword().trim().isEmpty() &&
-                        !model.getMobileNumber().trim().isEmpty()
+                        !model.getMobileNumber().trim().isEmpty() &&
+                        model.getMobileNumber().length() == 10
                 ) {
                     response = true;
                     break;
@@ -98,7 +101,7 @@ public class AccountServicesImpl implements AccountServices {
                         .message("""
                                 Note:
                                 The following fields are mandatory to login:
-                                1. Mobile Number
+                                1. Mobile Number (10 Digits)
                                 2. Password
                                 Please fill the above fields to login.""")
                         .build(), context);

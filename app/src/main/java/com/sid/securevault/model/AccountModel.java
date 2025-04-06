@@ -18,7 +18,7 @@ public class AccountModel implements Serializable {
     private String fullName;
     private String mobileNumber;
     private String emailId;
-    private LocalDate dateOfBirth;
+    private String dateOfBirth;
     private String password;
     private String confirmPassword;
 }
