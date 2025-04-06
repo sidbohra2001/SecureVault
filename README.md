@@ -16,7 +16,6 @@ It uses Firebase as backend to store the data.
 - Login to return user data
 
 ### Features to be Implemented
-- Implement Biometric Login
 - Implement proper color combination
 - Implement forgot password functionality
 - Implement User Data Storage
