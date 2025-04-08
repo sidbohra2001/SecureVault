@@ -4,7 +4,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/popup_drawable">
+    android:background="@drawable/popup_drawable"
+    android:clipToOutline="true">
 
     <TextView
         android:id="@+id/id_mb_title"
@@ -12,10 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/alien_energy"
         android:text="TextView"
         android:textColor="@color/deep_purple_700"
         android:textSize="22sp"
-        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

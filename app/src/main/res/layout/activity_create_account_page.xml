@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/popup_drawable"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:clipToOutline="true">
 
 
     <ScrollView
@@ -15,26 +16,28 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:clipToOutline="true"
         app:layout_constraintVertical_bias="0.5">
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/id_ca_createAccount_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="50dp"
+                    android:fontFamily="@font/alien_energy"
                     android:text="CREATE ACCOUNT"
                     android:textColor="@android:color/holo_blue_dark"
                     android:textSize="32sp"
-                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -55,15 +58,16 @@
                     android:id="@+id/id_ca_fullName_box"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
                     android:layout_marginHorizontal="10dp"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/popup_drawable"
+                    android:background="@drawable/round_box"
                     app:boxStrokeWidth="0dp"
                     app:boxStrokeWidthFocused="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/id_ca_note_txt">
+
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/id_ca_fullName"
                         android:layout_width="match_parent"
@@ -71,22 +75,23 @@
                         android:background="@color/transparent"
                         android:ems="10"
                         android:hint="Full Name"
-                        android:inputType="text"/>
+                        android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/id_ca_mobileNumber_box"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
                     android:layout_marginHorizontal="10dp"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/popup_drawable"
+                    android:background="@drawable/round_box"
                     app:boxStrokeWidth="0dp"
                     app:boxStrokeWidthFocused="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/id_ca_fullName_box">
+
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/id_ca_mobileNumber"
                         android:layout_width="match_parent"
@@ -101,15 +106,16 @@
                     android:id="@+id/id_ca_email_box"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
                     android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/popup_drawable"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/round_box"
                     app:boxStrokeWidth="0dp"
                     app:boxStrokeWidthFocused="0dp"
-                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/id_ca_mobileNumber_box">
+
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/id_ca_email"
                         android:layout_width="match_parent"
@@ -124,15 +130,16 @@
                     android:id="@+id/id_ca_dob_box"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
                     android:layout_marginHorizontal="10dp"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/popup_drawable"
+                    android:background="@drawable/round_box"
                     app:boxStrokeWidth="0dp"
                     app:boxStrokeWidthFocused="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/id_ca_email_box">
+
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/id_ca_dob"
                         android:layout_width="match_parent"
@@ -147,16 +154,17 @@
                     android:id="@+id/id_ca_password_box"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
                     android:layout_marginHorizontal="10dp"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/popup_drawable"
+                    android:background="@drawable/round_box"
                     app:boxStrokeWidth="0dp"
-                    app:passwordToggleEnabled="true"
                     app:boxStrokeWidthFocused="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_ca_dob_box">
+                    app:layout_constraintTop_toBottomOf="@+id/id_ca_dob_box"
+                    app:passwordToggleEnabled="true">
+
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/id_ca_password"
                         android:layout_width="match_parent"
@@ -164,23 +172,24 @@
                         android:background="@color/transparent"
                         android:ems="10"
                         android:hint="Password"
-                        android:inputType="textPassword"/>
+                        android:inputType="textPassword" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/id_ca_confirmPassword_box"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
                     android:layout_marginHorizontal="10dp"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/popup_drawable"
+                    android:background="@drawable/round_box"
                     app:boxStrokeWidth="0dp"
-                    app:passwordToggleEnabled="true"
                     app:boxStrokeWidthFocused="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_ca_password_box">
+                    app:layout_constraintTop_toBottomOf="@+id/id_ca_password_box"
+                    app:passwordToggleEnabled="true">
+
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/id_ca_confirmPassword"
                         android:layout_width="match_parent"

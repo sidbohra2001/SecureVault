@@ -14,8 +14,8 @@ It uses Firebase as backend to store the data.
 - Improve the UI
 - Change the apps logo
 - Login to return user data
+- Implement proper color combination (New Font and Background)
 
 ### Features to be Implemented
-- Implement proper color combination
 - Implement forgot password functionality
 - Implement User Data Storage
